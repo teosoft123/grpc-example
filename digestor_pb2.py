@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='digestor.proto',
   package='digestor',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64igestor.proto\x12\x08\x64igestor\"!\n\rDigestMessage\x12\x10\n\x08ToDigest\x18\x01 \x01(\t\"8\n\x0f\x44igestedMessage\x12\x10\n\x08\x44igested\x18\x01 \x01(\t\x12\x13\n\x0bWasDigested\x18\x02 \x01(\x08\x32O\n\x08\x44igestor\x12\x43\n\x0bGetDigestor\x12\x17.digestor.DigestMessage\x1a\x19.digestor.DigestedMessage\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64igestor.proto\x12\x08\x64igestor\"!\n\rDigestMessage\x12\x10\n\x08ToDigest\x18\x01 \x01(\t\"8\n\x0f\x44igestedMessage\x12\x10\n\x08\x44igested\x18\x01 \x01(\t\x12\x13\n\x0bWasDigested\x18\x02 \x01(\x08\x32\x93\x01\n\x08\x44igestor\x12\x43\n\x0bGetDigestor\x12\x17.digestor.DigestMessage\x1a\x19.digestor.DigestedMessage\"\x00\x12\x42\n\nGetDStream\x12\x17.digestor.DigestMessage\x1a\x17.digestor.DigestMessage\"\x00\x30\x01\x62\x06proto3')
 )
 
 
@@ -119,8 +119,8 @@ _DIGESTOR = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=121,
-  serialized_end=200,
+  serialized_start=122,
+  serialized_end=269,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetDigestor',
@@ -129,6 +129,15 @@ _DIGESTOR = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_DIGESTMESSAGE,
     output_type=_DIGESTEDMESSAGE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetDStream',
+    full_name='digestor.Digestor.GetDStream',
+    index=1,
+    containing_service=None,
+    input_type=_DIGESTMESSAGE,
+    output_type=_DIGESTMESSAGE,
     options=None,
   ),
 ])

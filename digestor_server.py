@@ -33,6 +33,29 @@ class DigestorServicer(digestor_pb2_grpc.DigestorServicer):
 
         return digestor_pb2.DigestedMessage(**result)
 
+    # code specific to our new service
+    def GetDStream(self, request, context):
+       """
+       RPC for getting streaming digests
+       """
+       # get the sentence that needs to be processed
+       to_be_digested_message = request.ToDigest
+
+       # get all the words in the sentence
+       word_list = to_be_digested_message.split(' ')
+
+       for word in word_list:
+           yield digestor_pb2.DigestedMessage(**self.get_hash(word))
+
+    def get_hash(self, data):
+       """
+       Class function for returning the hash of a function
+       """
+       hasher = hashlib.sha256()
+       hasher.update(data.encode())
+       digested = hasher.hexdigest()
+       return {'Digested': digested, 'WasDigested': True}
+
     def start_server(self):
         """
         Function which actually starts the gRPC server, and preps

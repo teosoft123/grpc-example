@@ -19,6 +19,11 @@ class DigestorStub(object):
         request_serializer=digestor__pb2.DigestMessage.SerializeToString,
         response_deserializer=digestor__pb2.DigestedMessage.FromString,
         )
+    self.GetDStream = channel.unary_stream(
+        '/digestor.Digestor/GetDStream',
+        request_serializer=digestor__pb2.DigestMessage.SerializeToString,
+        response_deserializer=digestor__pb2.DigestMessage.FromString,
+        )
 
 
 class DigestorServicer(object):
@@ -32,6 +37,13 @@ class DigestorServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetDStream(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_DigestorServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -39,6 +51,11 @@ def add_DigestorServicer_to_server(servicer, server):
           servicer.GetDigestor,
           request_deserializer=digestor__pb2.DigestMessage.FromString,
           response_serializer=digestor__pb2.DigestedMessage.SerializeToString,
+      ),
+      'GetDStream': grpc.unary_stream_rpc_method_handler(
+          servicer.GetDStream,
+          request_deserializer=digestor__pb2.DigestMessage.FromString,
+          response_serializer=digestor__pb2.DigestMessage.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
