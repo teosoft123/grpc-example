@@ -39,3 +39,7 @@ class DigestorClient(object):
         digested_words = self.stub.GetDStream(to_digest_message)
         for digested_word in digested_words:
             print(digested_word)
+
+
+dc = DigestorClient()
+dc.get_streaming_digest("Goodbye, cruel world.")
