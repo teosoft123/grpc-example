@@ -8,16 +8,18 @@ syntax = "proto3";
 
 package digestor;
 
-service Digestor{
-    rpc GetDigestor(DigestMessage) returns (DigestedMessage) {}
-    rpc GetDStream(DigestMessage) returns (stream DigestMessage) {}
+service Digestor {
+    rpc GetDigestor (DigestMessage) returns (DigestedMessage) {
+    }
+    rpc GetDStream (DigestMessage) returns (stream DigestMessage) {
+    }
 }
 
-message DigestMessage{
+message DigestMessage {
     string ToDigest = 1;
 }
 
-message DigestedMessage{
+message DigestedMessage {
     string Digested = 1;
     bool WasDigested = 2;
 }

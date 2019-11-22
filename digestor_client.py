@@ -1,6 +1,8 @@
 import grpc
+
 import digestor_pb2
 import digestor_pb2_grpc
+
 
 class DigestorClient(object):
     """
@@ -25,7 +27,7 @@ class DigestorClient(object):
         """
         Client function to call the rpc for GetDigest
         """
-        to_digest_message =digestor_pb2.DigestMessage(ToDigest=message)
+        to_digest_message = digestor_pb2.DigestMessage(ToDigest=message)
         return self.stub.GetDigestor(to_digest_message)
 
     # function to invoke our newly implemented RPC
@@ -33,7 +35,7 @@ class DigestorClient(object):
         """
         Client function to call the rpc for GetDStream
         """
-        to_digest_message =digestor_pb2.DigestMessage(ToDigest=message)
+        to_digest_message = digestor_pb2.DigestMessage(ToDigest=message)
         digested_words = self.stub.GetDStream(to_digest_message)
         for digested_word in digested_words:
             print(digested_word)
